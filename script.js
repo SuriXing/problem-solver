@@ -102,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Generate a random user ID
                             const userId = Math.floor(1000 + Math.random() * 9000);
                             
+                            // Generate a unique access code
+                            const accessCode = generateAccessCode();
+                            
                             // Store data in sessionStorage for the success page
                             const submissionData = {
                                 confessionText,
@@ -109,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 selectedTags,
                                 emailNotification,
                                 emailAddress,
-                                userId
+                                userId,
+                                accessCode
                             };
                             
                             sessionStorage.setItem('submissionData', JSON.stringify(submissionData));
@@ -153,10 +157,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Function to generate a unique access code
+    function generateAccessCode() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Removed similar-looking characters
+        let code = '';
+        
+        // Generate three groups of four characters
+        for (let group = 0; group < 3; group++) {
+            for (let i = 0; i < 4; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                code += chars[randomIndex];
+            }
+            if (group < 2) code += '-';
+        }
+        
+        return code;
+    }
+    
     // Success page functionality
     const confessionPreview = document.getElementById('confession-preview');
     const confessionTags = document.getElementById('confession-tags');
     const userIdSpan = document.getElementById('user-id');
+    const accessCodeSpan = document.getElementById('access-code');
+    const copyCodeBtn = document.getElementById('copy-code-btn');
     
     if (confessionPreview && userIdSpan) {
         // We're on the success page, populate with data from sessionStorage
@@ -165,6 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submissionData.confessionText) {
             confessionPreview.textContent = submissionData.confessionText;
             userIdSpan.textContent = submissionData.userId || '3842';
+            
+            if (accessCodeSpan) {
+                accessCodeSpan.textContent = submissionData.accessCode || 'XXXX-XXXX-XXXX';
+            }
             
             if (submissionData.selectedTags && submissionData.selectedTags.length > 0 && confessionTags) {
                 confessionTags.innerHTML = '';
@@ -181,6 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 tagSpan.textContent = '心事';
                 confessionTags.appendChild(tagSpan);
             }
+        }
+        
+        // Add copy functionality to the copy button
+        if (copyCodeBtn && accessCodeSpan) {
+            copyCodeBtn.addEventListener('click', () => {
+                const codeText = accessCodeSpan.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    copyCodeBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyCodeBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
         }
     }
     

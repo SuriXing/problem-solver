@@ -724,6 +724,20 @@ button:focus, .option-btn:focus, textarea:focus {
     .success-title {
         font-size: 1.75rem;
     }
+    
+    #access-code {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .access-code-title {
+        font-size: 1.1rem;
+    }
+    
+    .access-code-container {
+        padding: 1rem;
+    }
 }
 
 /* Responsive Design */
@@ -773,4 +787,99 @@ button:focus, .option-btn:focus, textarea:focus {
     .radio-label, .checkbox-label {
         font-size: 0.85rem;
     }
+}
+
+/* Access Code Styles */
+.access-code-container {
+    background-color: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.access-code-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.access-code-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#access-code {
+    background-color: var(--card-background);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-family: monospace;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px var(--shadow-color);
+    margin-right: 0.5rem;
+    user-select: all;
+}
+
+.copy-code-btn {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.copy-code-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.copy-code-btn:active {
+    transform: scale(0.95);
+}
+
+.access-code-desc {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.copied {
+    position: relative;
+}
+
+.copied::after {
+    content: "已复制!";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--success-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    animation: fadeInOut 1.5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 } 
