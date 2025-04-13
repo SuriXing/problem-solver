@@ -1,62 +1,62 @@
-# Anonymous Chat Forum
+# 解忧杂货铺 (Worry-Free Store)
 
-A simple, lightweight anonymous chat forum that requires no registration or login. Users can send messages and participate in discussions without creating an account.
+一个温暖的在线互助社区，人们可以匿名分享自己的困扰和烦恼，或为他人提供温暖的建议和支持。
 
-## Features
+## 功能特点
 
-- **Anonymous Messaging**: Send messages without creating an account
-- **Optional Nicknames**: Choose to use a nickname or remain completely anonymous
-- **Real-time Display**: Messages appear instantly in the chat window
-- **Responsive Design**: Works on desktop and mobile devices
-- **No Data Storage**: Messages exist only in the current session and are not stored permanently
+- **匿名倾诉**：用户可以匿名分享自己的困扰和问题
+- **互助社区**：用户可以帮助他人，回应他们的困扰
+- **情感支持**：提供一个温暖、安全的环境让用户表达自己
+- **响应式设计**：适配各种设备屏幕大小
+- **简洁界面**：友好的用户体验和直观的操作流程
 
-## How to Use
+## 页面说明
 
-1. Open `index.html` in a web browser
-2. Type your message in the text area
-3. (Optional) Enter a nickname in the nickname field
-4. Click the "Send" button or press Enter to send your message
-5. Your message will appear in the chat window
+### 首页 (index.html)
 
-## Implementation Notes
+首页提供两个主要选项：
+- "我有话想说" - 引导用户去分享自己的困扰
+- "我想帮助别人" - 引导用户去回应他人的问题
 
-This is a client-side only implementation, which means:
-- All messages are temporary and only visible to users currently viewing the page
-- Messages are not persisted in any database
-- No registration or login is required
-- No personal data is collected
+### 帮助页面 (help.html)
 
-## Installation
+显示需要帮助的人发布的问题，用户可以：
+- 阅读别人分享的困扰
+- 提供建议和鼓励
+- 使用表情符号表达情感
+- 查看自己的帮助统计数据
 
-No installation required. Simply download the repository and open `index.html` in any modern web browser.
+## 技术栈
 
+- HTML5
+- CSS3 (响应式设计)
+- JavaScript (原生)
+- Font Awesome 图标库
+
+## 部署说明
+
+该项目已配置为可以直接部署到GitHub Pages：
+
+1. 克隆仓库
+2. 推送至GitHub
+3. 在仓库设置中启用GitHub Pages
+
+## 本地开发
+
+```bash
+# 克隆仓库
+git clone https://github.com/yourusername/worry-free-store.git
+
+# 导航到项目目录
+cd worry-free-store
+
+# 使用任意HTTP服务器启动
+# 例如Python的简易服务器
+python -m http.server
 ```
-git clone https://github.com/yourusername/anonymous-chat-forum.git
-cd anonymous-chat-forum
-```
 
-Then open `index.html` in your browser.
+然后在浏览器中访问 http://localhost:8000
 
-## Limitations
+## 设计理念
 
-- Since this is a client-side only implementation, messages are not stored on a server
-- Messages will disappear when the page is refreshed
-- Users cannot see messages that were sent before they joined the session
-
-## Future Enhancements
-
-Potential improvements that could be added:
-
-- Server-side integration for message persistence
-- Chat rooms for different topics
-- Message formatting options
-- Image and file sharing
-- Moderation features
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## Disclaimer
-
-This chat forum is intended for demonstration purposes. In a production environment, appropriate measures should be taken to prevent abuse and ensure legal compliance.
+该项目的设计理念是创建一个温暖、安全的空间，让人们能够分享自己的困扰，同时也能够帮助他人。界面设计简洁明了，色彩柔和，尽可能减少使用障碍，让用户能够专注于交流和互助。
