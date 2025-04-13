@@ -125,31 +125,50 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <p class="confirmation-message">我们已收到你的心事，将尽快给予回应</p>
                                     
                                     <div class="confirmation-code-box">
-                                        <p>你的信件访问码</p>
-                                        <div class="access-code">
-                                            <span id="access-code-value">#${accessCode}</span>
+                                        <div class="code-header">
+                                            <div class="code-label">
+                                                <i class="fas fa-key"></i>
+                                                <span>你的信件访问码</span>
+                                            </div>
+                                            <div class="code-info">请保存此访问码，用于查看回复</div>
+                                        </div>
+                                        <div class="access-code-container">
+                                            <div class="access-code">
+                                                <span id="access-code-value">#${accessCode}</span>
+                                            </div>
                                             <button id="copy-code-btn" class="copy-btn" title="复制访问码">
-                                                <i class="far fa-copy"></i>
-                                            </button>
-                                        </div>
-                                        <p class="code-hint">请保存此访问码，用于查看回复</p>
-                                    </div>
-                                    
-                                    <div class="email-notification-box ${emailAddress ? 'hidden' : ''}">
-                                        <p>希望收到回复通知？</p>
-                                        <div class="email-form">
-                                            <input type="email" id="confirmation-email" placeholder="请输入你的邮箱" value="${emailAddress}">
-                                            <button id="save-email-btn" class="primary-btn">
-                                                <i class="fas fa-bell"></i> 开启通知
+                                                <i class="far fa-copy"></i> 复制访问码
                                             </button>
                                         </div>
                                     </div>
                                     
-                                    ${emailAddress ? `
-                                    <div class="email-confirmed">
-                                        <i class="fas fa-envelope-open-text"></i>
-                                        <p>有新回复时，我们会通知到：<strong>${emailAddress}</strong></p>
-                                    </div>` : ''}
+                                    <div class="email-notification-section ${emailAddress ? 'with-email' : ''}">
+                                        ${emailAddress ? `
+                                        <div class="email-confirmed">
+                                            <div class="email-icon">
+                                                <i class="fas fa-envelope-open-text"></i>
+                                            </div>
+                                            <div class="email-content">
+                                                <h3>邮件提醒已开启</h3>
+                                                <p>有新回复时，我们会通知到：<strong>${emailAddress}</strong></p>
+                                            </div>
+                                        </div>` : `
+                                        <div class="email-notification-box">
+                                            <div class="email-icon">
+                                                <i class="fas fa-bell"></i>
+                                            </div>
+                                            <div class="email-content">
+                                                <h3>开启邮件提醒</h3>
+                                                <p>当有人回复你的信件时，我们会发送邮件通知你</p>
+                                                <div class="email-form">
+                                                    <input type="email" id="confirmation-email" placeholder="请输入你的邮箱" value="${emailAddress}">
+                                                    <button id="save-email-btn" class="primary-btn">
+                                                        <i class="fas fa-bell"></i> 开启通知
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>`}
+                                    </div>
                                     
                                     <div class="confirmation-actions">
                                         <button id="back-to-home-btn" class="secondary-btn">
@@ -190,18 +209,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                         // In a real app, this would send the email to the server
                                         console.log('Email saved for notifications:', confirmationEmail);
                                         
-                                        // Show confirmation
-                                        const emailNotificationBox = document.querySelector('.email-notification-box');
-                                        emailNotificationBox.classList.add('hidden');
-                                        
-                                        // Add email confirmed message
-                                        const emailConfirmed = document.createElement('div');
-                                        emailConfirmed.className = 'email-confirmed';
-                                        emailConfirmed.innerHTML = `
-                                            <i class="fas fa-envelope-open-text"></i>
-                                            <p>有新回复时，我们会通知到：<strong>${confirmationEmail}</strong></p>
+                                        // Replace the email notification box with confirmation
+                                        const emailNotificationSection = document.querySelector('.email-notification-section');
+                                        emailNotificationSection.innerHTML = `
+                                            <div class="email-confirmed">
+                                                <div class="email-icon">
+                                                    <i class="fas fa-envelope-open-text"></i>
+                                                </div>
+                                                <div class="email-content">
+                                                    <h3>邮件提醒已开启</h3>
+                                                    <p>有新回复时，我们会通知到：<strong>${confirmationEmail}</strong></p>
+                                                </div>
+                                            </div>
                                         `;
-                                        emailNotificationBox.parentNode.insertBefore(emailConfirmed, emailNotificationBox.nextSibling);
+                                        emailNotificationSection.classList.add('with-email');
                                     } else {
                                         alert('请输入有效的邮箱地址');
                                     }
