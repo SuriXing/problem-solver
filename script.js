@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (startConfessionBtn) {
         startConfessionBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // In a real app, this would navigate to a confession form
-            alert('倾诉功能正在开发中，敬请期待！');
+            // Navigate to the confession page instead of showing alert
+            window.location.href = 'index.html?view=confession';
+            // Keeping the alert in case the navigation doesn't work
+            // alert('倾诉功能正在开发中，敬请期待！');
         });
     }
     
@@ -72,5 +74,66 @@ document.addEventListener('DOMContentLoaded', () => {
     if (view === 'help' && homeView && helpView) {
         homeView.classList.add('hidden');
         helpView.classList.remove('hidden');
+    } else if (view === 'confession' && homeView) {
+        // Create a simple confession form if it doesn't exist yet
+        if (!document.getElementById('confession-view')) {
+            const confessionView = document.createElement('section');
+            confessionView.id = 'confession-view';
+            confessionView.className = 'confession-view';
+            confessionView.innerHTML = `
+                <div class="confession-header">
+                    <h1 class="confession-title">分享你的故事</h1>
+                    <p class="confession-subtitle">在这里安全地倾诉，我们会认真倾听</p>
+                </div>
+                <div class="confession-form">
+                    <textarea placeholder="写下你的心事、困惑或者需要的帮助..."></textarea>
+                    <div class="tag-selector">
+                        <p>添加标签（可选）：</p>
+                        <div class="tags">
+                            <span class="tag">压力</span>
+                            <span class="tag">焦虑</span>
+                            <span class="tag">失眠</span>
+                            <span class="tag">感情</span>
+                            <span class="tag">工作</span>
+                            <span class="tag">学业</span>
+                        </div>
+                    </div>
+                    <button class="submit-confession-btn">
+                        <i class="fas fa-paper-plane"></i> 发送
+                    </button>
+                </div>`;
+            
+            // Insert the confession view after the home view
+            homeView.parentNode.insertBefore(confessionView, homeView.nextSibling);
+            
+            // Add event listener to the submit button
+            const submitConfessionBtn = document.querySelector('.submit-confession-btn');
+            if (submitConfessionBtn) {
+                submitConfessionBtn.addEventListener('click', () => {
+                    const confessionText = document.querySelector('.confession-form textarea').value.trim();
+                    if (confessionText) {
+                        alert('感谢你的分享！我们会尽快给予回应。');
+                        // In a real app, this would send the confession to a server
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('请先写下你的心事。');
+                    }
+                });
+            }
+            
+            // Add event listeners for tag selection
+            const tags = document.querySelectorAll('.tag');
+            if (tags.length > 0) {
+                tags.forEach(tag => {
+                    tag.addEventListener('click', () => {
+                        tag.classList.toggle('selected');
+                    });
+                });
+            }
+        }
+        
+        // Hide home view and show confession view
+        homeView.classList.add('hidden');
+        document.getElementById('confession-view').classList.remove('hidden');
     }
 }); 

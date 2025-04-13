@@ -385,6 +385,104 @@ button:focus, .option-btn:focus, textarea:focus {
     margin-top: 2rem;
 }
 
+/* Confession View Styles */
+.confession-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.confession-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+}
+
+.confession-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.confession-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-light);
+}
+
+.confession-form {
+    background-color: var(--card-background);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    padding: 2rem;
+    width: 100%;
+}
+
+.confession-form textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+}
+
+.confession-form textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.tag-selector {
+    margin-bottom: 1.5rem;
+}
+
+.tag-selector p {
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tag:hover, .tag.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.submit-confession-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+    float: right;
+}
+
+.submit-confession-btn:hover {
+    background-color: var(--primary-hover);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .options-container {
@@ -402,5 +500,18 @@ button:focus, .option-btn:focus, textarea:focus {
     .help-stats {
         flex-direction: column;
         gap: 0.75rem;
+    }
+    
+    .confession-form {
+        padding: 1.5rem;
+    }
+    
+    .tags {
+        gap: 0.25rem;
+    }
+    
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
     }
 } 
