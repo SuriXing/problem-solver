@@ -623,7 +623,7 @@ button:focus, .option-btn:focus, textarea:focus {
     background-color: var(--card-background);
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px var(--shadow-color);
-    padding: 3rem 2.5rem;
+    padding: 2.5rem 2rem;
     width: 100%;
     text-align: center;
     display: flex;
@@ -631,11 +631,18 @@ button:focus, .option-btn:focus, textarea:focus {
     align-items: center;
 }
 
+.confirmation-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
 .confirmation-icon {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
-    background-color: rgba(16, 185, 129, 0.1);
+    background-color: rgba(59, 130, 246, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -643,8 +650,8 @@ button:focus, .option-btn:focus, textarea:focus {
 }
 
 .confirmation-icon i {
-    font-size: 3rem;
-    color: var(--success-color);
+    font-size: 2.5rem;
+    color: var(--primary-color);
 }
 
 .confirmation-title {
@@ -657,7 +664,13 @@ button:focus, .option-btn:focus, textarea:focus {
 .confirmation-message {
     font-size: 1.125rem;
     color: var(--text-light);
-    margin-bottom: 2rem;
+}
+
+.confirmation-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 1.5rem 0;
 }
 
 .confirmation-code-box {
@@ -665,7 +678,7 @@ button:focus, .option-btn:focus, textarea:focus {
     border-radius: 0.75rem;
     padding: 1.5rem;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: left;
 }
 
@@ -690,6 +703,8 @@ button:focus, .option-btn:focus, textarea:focus {
 .code-info {
     color: var(--text-light);
     font-size: 0.875rem;
+    margin-top: 0.75rem;
+    text-align: center;
 }
 
 .access-code-container {
@@ -700,7 +715,6 @@ button:focus, .option-btn:focus, textarea:focus {
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
-    margin-top: 0.5rem;
 }
 
 .access-code {
@@ -725,7 +739,7 @@ button:focus, .option-btn:focus, textarea:focus {
     border-radius: 0.375rem;
     font-size: 0.875rem;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .copy-btn:hover {
@@ -782,9 +796,9 @@ button:focus, .option-btn:focus, textarea:focus {
 }
 
 .email-content p {
-    margin-bottom: 1rem;
     color: var(--text-light);
     font-size: 0.95rem;
+    margin-bottom: 1rem;
 }
 
 .email-confirmed {
@@ -812,11 +826,40 @@ button:focus, .option-btn:focus, textarea:focus {
     border-radius: 0.375rem;
     font-family: inherit;
     font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 #confirmation-email:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+#confirmation-email.error {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.email-error-msg {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.primary-btn:disabled {
+    background-color: var(--text-light);
+    cursor: not-allowed;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
 }
 
 .primary-btn {
@@ -829,6 +872,7 @@ button:focus, .option-btn:focus, textarea:focus {
     align-items: center;
     gap: 0.5rem;
     transition: background-color 0.2s;
+    white-space: nowrap;
 }
 
 .primary-btn:hover {
@@ -857,6 +901,8 @@ button:focus, .option-btn:focus, textarea:focus {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
 }
 
 /* Responsive styles for confirmation page */
@@ -871,7 +917,7 @@ button:focus, .option-btn:focus, textarea:focus {
     }
     
     .confirmation-icon i {
-        font-size: 2.25rem;
+        font-size: 2rem;
     }
     
     .confirmation-title {

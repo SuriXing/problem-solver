@@ -118,11 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             confirmationView.innerHTML = `
                                 <div class="confirmation-container">
-                                    <div class="confirmation-icon">
-                                        <i class="fas fa-check-circle"></i>
+                                    <div class="confirmation-header">
+                                        <div class="confirmation-icon">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </div>
+                                        <h1 class="confirmation-title">你的信件已成功发出！</h1>
+                                        <p class="confirmation-message">我们已收到你的心事，将尽快给予回应</p>
                                     </div>
-                                    <h1 class="confirmation-title">信件已成功发出！</h1>
-                                    <p class="confirmation-message">我们已收到你的心事，将尽快给予回应</p>
                                     
                                     <div class="confirmation-code-box">
                                         <div class="code-header">
@@ -130,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 <i class="fas fa-key"></i>
                                                 <span>你的信件访问码</span>
                                             </div>
-                                            <div class="code-info">请保存此访问码，用于查看回复</div>
                                         </div>
                                         <div class="access-code-container">
                                             <div class="access-code">
@@ -140,7 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 <i class="far fa-copy"></i> 复制访问码
                                             </button>
                                         </div>
+                                        <p class="code-info">请保存此访问码，用于以后查看回复</p>
                                     </div>
+                                    
+                                    <div class="confirmation-divider"></div>
                                     
                                     <div class="email-notification-section ${emailAddress ? 'with-email' : ''}">
                                         ${emailAddress ? `
@@ -190,15 +194,62 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (copyCodeBtn) {
                                 copyCodeBtn.addEventListener('click', () => {
                                     const accessCodeValue = document.getElementById('access-code-value').textContent;
-                                    navigator.clipboard.writeText(accessCodeValue).then(() => {
-                                        copyCodeBtn.innerHTML = '<i class="fas fa-check"></i>';
-                                        copyCodeBtn.classList.add('copied');
-                                        setTimeout(() => {
-                                            copyCodeBtn.innerHTML = '<i class="far fa-copy"></i>';
-                                            copyCodeBtn.classList.remove('copied');
-                                        }, 2000);
-                                    });
+                                    
+                                    // Check if the Clipboard API is available
+                                    if (navigator.clipboard) {
+                                        navigator.clipboard.writeText(accessCodeValue)
+                                            .then(() => {
+                                                // Success feedback
+                                                copyCodeBtn.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                                                copyCodeBtn.classList.add('copied');
+                                                setTimeout(() => {
+                                                    copyCodeBtn.innerHTML = '<i class="far fa-copy"></i> 复制访问码';
+                                                    copyCodeBtn.classList.remove('copied');
+                                                }, 2000);
+                                            })
+                                            .catch(err => {
+                                                // Fallback for clipboard write failure
+                                                console.error('无法复制文本: ', err);
+                                                fallbackCopyTextToClipboard(accessCodeValue, copyCodeBtn);
+                                            });
+                                    } else {
+                                        // Fallback for browsers that don't support clipboard API
+                                        fallbackCopyTextToClipboard(accessCodeValue, copyCodeBtn);
+                                    }
                                 });
+                                
+                                // Fallback copy function using older methods
+                                function fallbackCopyTextToClipboard(text, button) {
+                                    const textArea = document.createElement("textarea");
+                                    textArea.value = text;
+                                    
+                                    // Make the textarea out of viewport
+                                    textArea.style.position = "fixed";
+                                    textArea.style.left = "-999999px";
+                                    textArea.style.top = "-999999px";
+                                    document.body.appendChild(textArea);
+                                    textArea.focus();
+                                    textArea.select();
+                                    
+                                    try {
+                                        const successful = document.execCommand('copy');
+                                        if (successful) {
+                                            button.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                                            button.classList.add('copied');
+                                            setTimeout(() => {
+                                                button.innerHTML = '<i class="far fa-copy"></i> 复制访问码';
+                                                button.classList.remove('copied');
+                                            }, 2000);
+                                        } else {
+                                            alert('无法复制访问码，请手动复制: ' + text);
+                                        }
+                                    } catch (err) {
+                                        console.error('无法复制文本: ', err);
+                                        alert('无法复制访问码，请手动复制: ' + text);
+                                    }
+                                    
+                                    document.body.removeChild(textArea);
+                                }
                             }
                             
                             const saveEmailBtn = document.getElementById('save-email-btn');
@@ -206,23 +257,61 @@ document.addEventListener('DOMContentLoaded', () => {
                                 saveEmailBtn.addEventListener('click', () => {
                                     const confirmationEmail = document.getElementById('confirmation-email').value.trim();
                                     if (confirmationEmail) {
-                                        // In a real app, this would send the email to the server
-                                        console.log('Email saved for notifications:', confirmationEmail);
-                                        
-                                        // Replace the email notification box with confirmation
-                                        const emailNotificationSection = document.querySelector('.email-notification-section');
-                                        emailNotificationSection.innerHTML = `
-                                            <div class="email-confirmed">
-                                                <div class="email-icon">
-                                                    <i class="fas fa-envelope-open-text"></i>
-                                                </div>
-                                                <div class="email-content">
-                                                    <h3>邮件提醒已开启</h3>
-                                                    <p>有新回复时，我们会通知到：<strong>${confirmationEmail}</strong></p>
-                                                </div>
-                                            </div>
-                                        `;
-                                        emailNotificationSection.classList.add('with-email');
+                                        // Validate email format
+                                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                        if (emailRegex.test(confirmationEmail)) {
+                                            // In a real app, this would send the email to the server
+                                            console.log('Email saved for notifications:', confirmationEmail);
+                                            
+                                            // Show loading state
+                                            saveEmailBtn.disabled = true;
+                                            saveEmailBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 保存中...';
+                                            
+                                            // Simulate network request
+                                            setTimeout(() => {
+                                                // Replace the email notification box with confirmation
+                                                const emailNotificationSection = document.querySelector('.email-notification-section');
+                                                emailNotificationSection.innerHTML = `
+                                                    <div class="email-confirmed">
+                                                        <div class="email-icon">
+                                                            <i class="fas fa-envelope-open-text"></i>
+                                                        </div>
+                                                        <div class="email-content">
+                                                            <h3>邮件提醒已开启</h3>
+                                                            <p>有新回复时，我们会通知到：<strong>${confirmationEmail}</strong></p>
+                                                        </div>
+                                                    </div>
+                                                `;
+                                                emailNotificationSection.classList.add('with-email');
+                                            }, 1000);
+                                        } else {
+                                            // Invalid email format
+                                            const emailInput = document.getElementById('confirmation-email');
+                                            emailInput.classList.add('error');
+                                            
+                                            // Show error message
+                                            const errorMsg = document.createElement('p');
+                                            errorMsg.className = 'email-error-msg';
+                                            errorMsg.innerHTML = '请输入有效的邮箱地址';
+                                            
+                                            // Check if error message already exists
+                                            const existingError = document.querySelector('.email-error-msg');
+                                            if (!existingError) {
+                                                emailInput.parentNode.insertBefore(errorMsg, emailInput.nextSibling);
+                                            }
+                                            
+                                            // Focus the input for correction
+                                            emailInput.focus();
+                                            
+                                            // Remove error styling when user types
+                                            emailInput.addEventListener('input', function() {
+                                                this.classList.remove('error');
+                                                const errorMsg = document.querySelector('.email-error-msg');
+                                                if (errorMsg) {
+                                                    errorMsg.remove();
+                                                }
+                                            }, { once: true });
+                                        }
                                     } else {
                                         alert('请输入有效的邮箱地址');
                                     }
