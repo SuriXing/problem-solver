@@ -99,14 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
                             const selectedTags = Array.from(document.querySelectorAll('.tag.selected')).map(tag => tag.textContent);
                             const emailAddress = emailNotification && emailInput ? emailInput.value.trim() : '';
                             
-                            // In a real app, this would send the data to a server
-                            console.log({
+                            // Generate a random user ID
+                            const userId = Math.floor(1000 + Math.random() * 9000);
+                            
+                            // Generate a unique access code
+                            const accessCode = generateAccessCode();
+                            
+                            // Store data in sessionStorage for the success page
+                            const submissionData = {
                                 confessionText,
                                 privacyOption,
                                 selectedTags,
                                 emailNotification,
-                                emailAddress
-                            });
+                                emailAddress,
+                                userId,
+                                accessCode
+                            };
+                            
+                            sessionStorage.setItem('submissionData', JSON.stringify(submissionData));
+                            
+                            // In a real app, this would send the data to a server
+                            console.log(submissionData);
                             
                             // Generate a random access code
                             const accessCode = Math.floor(10000 + Math.random() * 90000);
@@ -364,6 +377,73 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the URL without refreshing the page to help with navigation
             history.pushState({}, '', 'index.html?view=confession');
         });
+    }
+    
+    // Function to generate a unique access code
+    function generateAccessCode() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Removed similar-looking characters
+        let code = '';
+        
+        // Generate three groups of four characters
+        for (let group = 0; group < 3; group++) {
+            for (let i = 0; i < 4; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                code += chars[randomIndex];
+            }
+            if (group < 2) code += '-';
+        }
+        
+        return code;
+    }
+    
+    // Success page functionality
+    const confessionPreview = document.getElementById('confession-preview');
+    const confessionTags = document.getElementById('confession-tags');
+    const userIdSpan = document.getElementById('user-id');
+    const accessCodeSpan = document.getElementById('access-code');
+    const copyCodeBtn = document.getElementById('copy-code-btn');
+    
+    if (confessionPreview && userIdSpan) {
+        // We're on the success page, populate with data from sessionStorage
+        const submissionData = JSON.parse(sessionStorage.getItem('submissionData') || '{}');
+        
+        if (submissionData.confessionText) {
+            confessionPreview.textContent = submissionData.confessionText;
+            userIdSpan.textContent = submissionData.userId || '3842';
+            
+            if (accessCodeSpan) {
+                accessCodeSpan.textContent = submissionData.accessCode || 'XXXX-XXXX-XXXX';
+            }
+            
+            if (submissionData.selectedTags && submissionData.selectedTags.length > 0 && confessionTags) {
+                confessionTags.innerHTML = '';
+                submissionData.selectedTags.forEach(tag => {
+                    const tagSpan = document.createElement('span');
+                    tagSpan.className = 'message-tag';
+                    tagSpan.textContent = tag;
+                    confessionTags.appendChild(tagSpan);
+                });
+            } else if (confessionTags) {
+                // If no tags were selected, add a default one
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'message-tag';
+                tagSpan.textContent = '心事';
+                confessionTags.appendChild(tagSpan);
+            }
+        }
+        
+        // Add copy functionality to the copy button
+        if (copyCodeBtn && accessCodeSpan) {
+            copyCodeBtn.addEventListener('click', () => {
+                const codeText = accessCodeSpan.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    copyCodeBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyCodeBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
     }
     
     // Help page specific functionality
