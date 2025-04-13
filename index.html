@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Chat Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Anonymous Chat</h1>
+            <p class="tagline">Speak freely, no registration required</p>
+        </header>
+
+        <main>
+            <section class="chat-container">
+                <div class="messages" id="message-container">
+                    <!-- Messages will be displayed here -->
+                    <div class="message">
+                        <div class="message-header">
+                            <span class="user">Anonymous</span>
+                            <span class="time">Just now</span>
+                        </div>
+                        <div class="message-content">
+                            Welcome to the anonymous chat forum! Feel free to start a conversation.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="input-container">
+                <form id="message-form">
+                    <textarea id="message-input" placeholder="Type your message here..." required></textarea>
+                    <div class="form-footer">
+                        <input type="text" id="nickname-input" placeholder="Nickname (optional)">
+                        <button type="submit" id="send-button">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Anonymous Chat Forum. No data is stored permanently.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const messageForm = document.getElementById('message-form');
+            const messageInput = document.getElementById('message-input');
+            const nicknameInput = document.getElementById('nickname-input');
+            const messageContainer = document.getElementById('message-container');
+
+            // Function to sanitize user input to prevent XSS
+            const sanitizeInput = (input) => {
+                const div = document.createElement('div');
+                div.textContent = input;
+                return div.innerHTML;
+            };
+
+            messageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    messageForm.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            messageForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const message = messageInput.value.trim();
+                if (!message) return;
+                
+                const nickname = nicknameInput.value.trim() || 'Anonymous';
+                
+                // Create message element
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message';
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                // Use sanitized inputs to prevent XSS
+                const sanitizedNickname = sanitizeInput(nickname);
+                const sanitizedMessage = sanitizeInput(message);
+                
+                messageElement.innerHTML = `
+                    <div class="message-header">
+                        <span class="user">${sanitizedNickname}</span>
+                        <span class="time">${timeString}</span>
+                    </div>
+                    <div class="message-content">
+                        ${sanitizedMessage}
+                    </div>
+                `;
+                
+                // Add message to container
+                messageContainer.appendChild(messageElement);
+                
+                // Clear input field
+                messageInput.value = '';
+                
+                // Scroll to bottom
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html> 
