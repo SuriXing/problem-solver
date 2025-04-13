@@ -609,6 +609,250 @@ button:focus, .option-btn:focus, textarea:focus {
     color: white;
 }
 
+/* Confirmation View Styles */
+.confirmation-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.confirmation-container {
+    background-color: var(--card-background);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    padding: 2.5rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmation-icon {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-icon i {
+    font-size: 3rem;
+    color: var(--success-color);
+}
+
+.confirmation-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.confirmation-message {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.confirmation-code-box {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.confirmation-code-box p {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.access-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+#access-code-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.1em;
+}
+
+.copy-btn {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary-color);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.copy-btn:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+}
+
+.copy-btn.copied {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.code-hint {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.email-notification-box {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.email-notification-box p {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.email-form {
+    display: flex;
+    gap: 0.75rem;
+}
+
+#confirmation-email {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+#confirmation-email:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.secondary-btn {
+    background-color: white;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.secondary-btn:hover {
+    background-color: var(--background-color);
+    border-color: var(--text-light);
+}
+
+.email-confirmed {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: rgba(16, 185, 129, 0.1);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.email-confirmed i {
+    font-size: 1.5rem;
+    color: var(--success-color);
+}
+
+.email-confirmed p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Responsive styles for confirmation page */
+@media (max-width: 768px) {
+    .confirmation-container {
+        padding: 1.5rem;
+    }
+    
+    .confirmation-icon {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    
+    .confirmation-icon i {
+        font-size: 2.25rem;
+    }
+    
+    .confirmation-title {
+        font-size: 1.5rem;
+    }
+    
+    .confirmation-message {
+        font-size: 1rem;
+    }
+    
+    #access-code-value {
+        font-size: 1.5rem;
+    }
+    
+    .email-form {
+        flex-direction: column;
+    }
+    
+    .confirmation-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .confirmation-code-box,
+    .email-notification-box,
+    .email-confirmed {
+        padding: 1.25rem;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .options-container {

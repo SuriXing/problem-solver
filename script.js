@@ -108,8 +108,120 @@ document.addEventListener('DOMContentLoaded', () => {
                                 emailAddress
                             });
                             
-                            alert('感谢你的分享！我们会尽快给予回应。');
-                            window.location.href = './';
+                            // Generate a random access code
+                            const accessCode = Math.floor(10000 + Math.random() * 90000);
+                            
+                            // Create confirmation view
+                            const confirmationView = document.createElement('section');
+                            confirmationView.id = 'confirmation-view';
+                            confirmationView.className = 'confirmation-view';
+                            
+                            confirmationView.innerHTML = `
+                                <div class="confirmation-container">
+                                    <div class="confirmation-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h1 class="confirmation-title">信件已成功发出！</h1>
+                                    <p class="confirmation-message">我们已收到你的心事，将尽快给予回应</p>
+                                    
+                                    <div class="confirmation-code-box">
+                                        <p>你的信件访问码</p>
+                                        <div class="access-code">
+                                            <span id="access-code-value">#${accessCode}</span>
+                                            <button id="copy-code-btn" class="copy-btn" title="复制访问码">
+                                                <i class="far fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <p class="code-hint">请保存此访问码，用于查看回复</p>
+                                    </div>
+                                    
+                                    <div class="email-notification-box ${emailAddress ? 'hidden' : ''}">
+                                        <p>希望收到回复通知？</p>
+                                        <div class="email-form">
+                                            <input type="email" id="confirmation-email" placeholder="请输入你的邮箱" value="${emailAddress}">
+                                            <button id="save-email-btn" class="primary-btn">
+                                                <i class="fas fa-bell"></i> 开启通知
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    ${emailAddress ? `
+                                    <div class="email-confirmed">
+                                        <i class="fas fa-envelope-open-text"></i>
+                                        <p>有新回复时，我们会通知到：<strong>${emailAddress}</strong></p>
+                                    </div>` : ''}
+                                    
+                                    <div class="confirmation-actions">
+                                        <button id="back-to-home-btn" class="secondary-btn">
+                                            <i class="fas fa-home"></i> 返回首页
+                                        </button>
+                                        <button id="view-message-btn" class="primary-btn">
+                                            <i class="fas fa-eye"></i> 查看我的信件
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            // Replace the confession view with confirmation view
+                            const confessionView = document.getElementById('confession-view');
+                            confessionView.parentNode.replaceChild(confirmationView, confessionView);
+                            
+                            // Add event listeners for the confirmation page buttons
+                            const copyCodeBtn = document.getElementById('copy-code-btn');
+                            if (copyCodeBtn) {
+                                copyCodeBtn.addEventListener('click', () => {
+                                    const accessCodeValue = document.getElementById('access-code-value').textContent;
+                                    navigator.clipboard.writeText(accessCodeValue).then(() => {
+                                        copyCodeBtn.innerHTML = '<i class="fas fa-check"></i>';
+                                        copyCodeBtn.classList.add('copied');
+                                        setTimeout(() => {
+                                            copyCodeBtn.innerHTML = '<i class="far fa-copy"></i>';
+                                            copyCodeBtn.classList.remove('copied');
+                                        }, 2000);
+                                    });
+                                });
+                            }
+                            
+                            const saveEmailBtn = document.getElementById('save-email-btn');
+                            if (saveEmailBtn) {
+                                saveEmailBtn.addEventListener('click', () => {
+                                    const confirmationEmail = document.getElementById('confirmation-email').value.trim();
+                                    if (confirmationEmail) {
+                                        // In a real app, this would send the email to the server
+                                        console.log('Email saved for notifications:', confirmationEmail);
+                                        
+                                        // Show confirmation
+                                        const emailNotificationBox = document.querySelector('.email-notification-box');
+                                        emailNotificationBox.classList.add('hidden');
+                                        
+                                        // Add email confirmed message
+                                        const emailConfirmed = document.createElement('div');
+                                        emailConfirmed.className = 'email-confirmed';
+                                        emailConfirmed.innerHTML = `
+                                            <i class="fas fa-envelope-open-text"></i>
+                                            <p>有新回复时，我们会通知到：<strong>${confirmationEmail}</strong></p>
+                                        `;
+                                        emailNotificationBox.parentNode.insertBefore(emailConfirmed, emailNotificationBox.nextSibling);
+                                    } else {
+                                        alert('请输入有效的邮箱地址');
+                                    }
+                                });
+                            }
+                            
+                            const backToHomeBtn = document.getElementById('back-to-home-btn');
+                            if (backToHomeBtn) {
+                                backToHomeBtn.addEventListener('click', () => {
+                                    window.location.href = './';
+                                });
+                            }
+                            
+                            const viewMessageBtn = document.getElementById('view-message-btn');
+                            if (viewMessageBtn) {
+                                viewMessageBtn.addEventListener('click', () => {
+                                    // In a real app, this would navigate to the message view page with the access code
+                                    alert('查看信件功能正在开发中，敬请期待！');
+                                });
+                            }
                         }
                     });
                 }
