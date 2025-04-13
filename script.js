@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return code;
     }
     
-    // Success page functionality
+    // Success page functionality (for confession submission)
     const confessionPreview = document.getElementById('confession-preview');
     const confessionTags = document.getElementById('confession-tags');
     const userIdSpan = document.getElementById('user-id');
@@ -224,6 +224,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    // Helper success page functionality
+    const questionPreview = document.getElementById('question-preview');
+    const questionTags = document.getElementById('question-tags');
+    const posterIdSpan = document.getElementById('poster-id');
+    const replyContent = document.getElementById('reply-content');
+    const todayHelpedSpan = document.getElementById('today-helped');
+    const totalHelpedSpan = document.getElementById('total-helped');
+    const totalThanksSpan = document.getElementById('total-thanks');
+    
+    if (questionPreview && replyContent) {
+        // We're on the helper success page, populate with data from sessionStorage
+        const helperData = JSON.parse(sessionStorage.getItem('helperData') || '{}');
+        
+        if (helperData.questionText) {
+            questionPreview.textContent = helperData.questionText;
+            posterIdSpan.textContent = helperData.posterId || '2831';
+            replyContent.textContent = helperData.replyText || '你的回应内容将显示在这里...';
+            
+            // Update stats if available
+            if (helperData.stats) {
+                todayHelpedSpan.textContent = helperData.stats.todayHelped || '4';
+                totalHelpedSpan.textContent = helperData.stats.totalHelped || '29';
+                totalThanksSpan.textContent = helperData.stats.totalThanks || '12';
+            }
+            
+            if (helperData.questionTags && helperData.questionTags.length > 0 && questionTags) {
+                questionTags.innerHTML = '';
+                helperData.questionTags.forEach(tag => {
+                    const tagSpan = document.createElement('span');
+                    tagSpan.className = 'message-tag';
+                    tagSpan.textContent = tag;
+                    questionTags.appendChild(tagSpan);
+                });
+            } else if (questionTags) {
+                // If no tags were present, add a default one
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'message-tag';
+                tagSpan.textContent = '心事';
+                questionTags.appendChild(tagSpan);
+            }
+        }
+    }
+    
     // Help page specific functionality
     const replyTextarea = document.querySelector('.reply-area textarea');
     const submitReplyBtn = document.querySelector('.submit-reply-btn');
@@ -248,12 +291,57 @@ document.addEventListener('DOMContentLoaded', () => {
             const replyText = replyTextarea.value.trim();
             
             if (replyText) {
-                // In a real app, this would send the reply to a server
-                alert('感谢你的回应！你的温暖将传递给需要帮助的人。');
-                replyTextarea.value = '';
+                // Get the question text and tags
+                const messageContent = document.querySelector('.message-content p');
+                const messageTags = document.querySelectorAll('.message-tags .message-tag');
+                const messageAuthor = document.querySelector('.message-author');
                 
-                // Simulate success by updating the stats (in a real app, this would be done after server confirmation)
-                updateHelperStats();
+                if (messageContent) {
+                    // Extract post ID from author text (format: "匿名提问者 #2831")
+                    const posterId = messageAuthor ? 
+                        messageAuthor.textContent.match(/#(\d+)/) ? 
+                        messageAuthor.textContent.match(/#(\d+)/)[1] : '2831'
+                        : '2831';
+                    
+                    // Get question tags
+                    const questionTags = Array.from(messageTags).map(tag => tag.textContent);
+                    
+                    // Get the current stats
+                    const todayHelpedText = document.querySelector('.help-stats .stat-item:nth-child(1)').textContent;
+                    const totalHelpedText = document.querySelector('.help-stats .stat-item:nth-child(2)').textContent;
+                    const totalThanksText = document.querySelector('.help-stats .stat-item:nth-child(3)').textContent;
+                    
+                    const todayHelped = parseInt(todayHelpedText.match(/\d+/)[0]) + 1;
+                    const totalHelped = parseInt(totalHelpedText.match(/\d+/)[0]) + 1;
+                    const totalThanks = parseInt(totalThanksText.match(/\d+/)[0]);
+                    
+                    // Prepare helper data for the success page
+                    const helperData = {
+                        questionText: messageContent.textContent,
+                        posterId,
+                        questionTags,
+                        replyText,
+                        stats: {
+                            todayHelped,
+                            totalHelped,
+                            totalThanks
+                        }
+                    };
+                    
+                    // Store the data for the success page
+                    sessionStorage.setItem('helperData', JSON.stringify(helperData));
+                    
+                    // In a real app, this would send the reply to a server
+                    console.log(helperData);
+                    
+                    // Redirect to the helper success page
+                    window.location.href = 'help-success.html';
+                } else {
+                    // If we can't find the question content, just show an alert
+                    alert('感谢你的回应！你的温暖将传递给需要帮助的人。');
+                    replyTextarea.value = '';
+                    updateHelperStats();
+                }
             } else {
                 alert('请先写下你的建议和鼓励。');
             }

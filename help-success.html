@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>感谢你的回应 - 解忧杂货铺</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-handshake"></i>
+                    <span>解忧杂货铺</span>
+                </a>
+            </div>
+            <nav class="nav-right">
+                <a href="#" class="nav-link history-link">
+                    <i class="fas fa-history"></i>
+                    <span>过往回应</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="help-success-view">
+            <div class="success-header">
+                <div class="success-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1 class="success-title">感谢你的温暖回应</h1>
+                <p class="success-subtitle">你的建议和鼓励将带给对方力量和希望</p>
+            </div>
+
+            <div class="helper-stats-container">
+                <h2 class="helper-stats-title">你的帮助统计</h2>
+                <div class="helper-stats-grid">
+                    <div class="helper-stat-item">
+                        <div class="helper-stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="helper-stat-value" id="today-helped">4</div>
+                        <div class="helper-stat-label">今日已帮助</div>
+                    </div>
+                    <div class="helper-stat-item">
+                        <div class="helper-stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="helper-stat-value" id="total-helped">29</div>
+                        <div class="helper-stat-label">累计帮助</div>
+                    </div>
+                    <div class="helper-stat-item">
+                        <div class="helper-stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="helper-stat-value" id="total-thanks">12</div>
+                        <div class="helper-stat-label">收到感谢</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-message">
+                <div class="message-card">
+                    <div class="message-image">
+                        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="瓶中信">
+                    </div>
+                    <div class="message-info">
+                        <div class="message-meta">
+                            <span class="message-author"><i class="fas fa-user-circle"></i> 匿名提问者 #<span id="poster-id">2831</span></span>
+                        </div>
+                        <div class="message-content">
+                            <p id="question-preview">问题内容将显示在这里...</p>
+                        </div>
+                        <div class="message-tags" id="question-tags">
+                            <!-- Tags will be inserted by JavaScript -->
+                        </div>
+                        <div class="reply-preview">
+                            <div class="reply-header">
+                                <i class="fas fa-reply"></i> 你的回应:
+                            </div>
+                            <p id="reply-content">你的回应内容将显示在这里...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-actions">
+                <div class="action-buttons">
+                    <a href="index.html" class="option-btn return-home-btn">
+                        <i class="fas fa-home"></i> 返回首页
+                    </a>
+                    <a href="help.html" class="option-btn help-btn">
+                        <i class="fas fa-hands-helping"></i> 继续帮助他人
+                    </a>
+                </div>
+            </div>
+
+            <div class="success-info-box">
+                <h3><i class="fas fa-info-circle"></i> 你的善举很重要</h3>
+                <ul>
+                    <li>你的回应已经传递给了需要帮助的人</li>
+                    <li>对方收到后可能会给你发送感谢</li>
+                    <li>你可以在"过往回应"中查看你的所有回应和对方的反馈</li>
+                    <li>每一个温暖的回应都可能改变一个人的处境</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2024 解忧杂货铺 - 一个温暖的心灵港湾</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

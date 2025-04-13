@@ -882,4 +882,119 @@ button:focus, .option-btn:focus, textarea:focus {
     20% { opacity: 1; }
     80% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* Helper Success View Styles */
+.help-success-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.helper-stats-container {
+    background-color: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.helper-stats-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.helper-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.helper-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.helper-stat-icon {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.helper-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.helper-stat-label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.reply-preview {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.reply-header {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+#reply-content {
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: rgba(59, 130, 246, 0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+}
+
+/* Media Queries for Helper Success View */
+@media (max-width: 768px) {
+    .helper-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .helper-stat-item {
+        padding: 0.75rem;
+    }
+    
+    .helper-stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .helper-stat-icon {
+        font-size: 1.25rem;
+    }
+    
+    .helper-stats-title {
+        font-size: 1.1rem;
+    }
+    
+    .helper-stats-container {
+        padding: 1rem;
+    }
 } 
