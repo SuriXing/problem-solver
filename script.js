@@ -18,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 confessionView.className = 'confession-view';
                 confessionView.innerHTML = `
                     <div class="confession-header">
-                        <h1 class="confession-title">分享你的故事</h1>
-                        <p class="confession-subtitle">在这里安全地倾诉，我们会认真倾听</p>
+                        <h1 class="confession-title">向杂货铺老板倾诉</h1>
+                        <p class="confession-subtitle">在这里分享你的困扰，收到回复时将通知你</p>
                     </div>
                     <div class="confession-form">
+                        <div class="confession-image">
+                            <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="信件">
+                        </div>
                         <textarea placeholder="写下你的心事、困惑或者需要的帮助..."></textarea>
                         <div class="tag-selector">
                             <p>添加标签（可选）：</p>
@@ -34,9 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="tag">学业</span>
                             </div>
                         </div>
-                        <button class="submit-confession-btn">
-                            <i class="fas fa-paper-plane"></i> 发送
-                        </button>
+                        <div class="confession-options">
+                            <div class="privacy-options">
+                                <p>隐私设置：</p>
+                                <div class="radio-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="privacy" value="public" checked>
+                                        <span class="radio-custom"></span>
+                                        <span>公开提问 (可被大家回答)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="privacy" value="private">
+                                        <span class="radio-custom"></span>
+                                        <span>私密提问 (仅管理员可见)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="notification-option">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="email-notification">
+                                    <span class="checkbox-custom"></span>
+                                    <span>有回复时通过邮件通知我</span>
+                                </label>
+                                <div class="email-input-container" style="display: none;">
+                                    <input type="email" placeholder="请输入你的邮箱" class="email-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="submit-confession-btn">
+                                <i class="fas fa-paper-plane"></i> 发送
+                            </button>
+                        </div>
                     </div>`;
                 
                 // Insert the confession view after the home view
@@ -47,12 +79,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (submitConfessionBtn) {
                     submitConfessionBtn.addEventListener('click', () => {
                         const confessionText = document.querySelector('.confession-form textarea').value.trim();
-                        if (confessionText) {
-                            alert('感谢你的分享！我们会尽快给予回应。');
-                            // In a real app, this would send the confession to a server
-                            window.location.href = './';
-                        } else {
+                        const emailNotification = document.getElementById('email-notification').checked;
+                        const emailInput = document.querySelector('.email-input');
+                        let validSubmission = true;
+                        
+                        if (!confessionText) {
                             alert('请先写下你的心事。');
+                            validSubmission = false;
+                        }
+                        
+                        if (emailNotification && emailInput && !emailInput.value.trim()) {
+                            alert('请填写你的邮箱地址以接收通知。');
+                            validSubmission = false;
+                        }
+                        
+                        if (validSubmission) {
+                            // Collect form data for submission
+                            const privacyOption = document.querySelector('input[name="privacy"]:checked').value;
+                            const selectedTags = Array.from(document.querySelectorAll('.tag.selected')).map(tag => tag.textContent);
+                            const emailAddress = emailNotification && emailInput ? emailInput.value.trim() : '';
+                            
+                            // In a real app, this would send the data to a server
+                            console.log({
+                                confessionText,
+                                privacyOption,
+                                selectedTags,
+                                emailNotification,
+                                emailAddress
+                            });
+                            
+                            alert('感谢你的分享！我们会尽快给予回应。');
+                            window.location.href = './';
                         }
                     });
                 }
@@ -64,6 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         tag.addEventListener('click', () => {
                             tag.classList.toggle('selected');
                         });
+                    });
+                }
+                
+                // Add event listener for email notification checkbox
+                const emailNotificationCheckbox = document.getElementById('email-notification');
+                const emailInputContainer = document.querySelector('.email-input-container');
+                
+                if (emailNotificationCheckbox && emailInputContainer) {
+                    emailNotificationCheckbox.addEventListener('change', () => {
+                        emailInputContainer.style.display = emailNotificationCheckbox.checked ? 'block' : 'none';
                     });
                 }
             }
