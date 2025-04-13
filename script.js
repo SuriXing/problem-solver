@@ -99,17 +99,26 @@ document.addEventListener('DOMContentLoaded', () => {
                             const selectedTags = Array.from(document.querySelectorAll('.tag.selected')).map(tag => tag.textContent);
                             const emailAddress = emailNotification && emailInput ? emailInput.value.trim() : '';
                             
-                            // In a real app, this would send the data to a server
-                            console.log({
+                            // Generate a random user ID
+                            const userId = Math.floor(1000 + Math.random() * 9000);
+                            
+                            // Store data in sessionStorage for the success page
+                            const submissionData = {
                                 confessionText,
                                 privacyOption,
                                 selectedTags,
                                 emailNotification,
-                                emailAddress
-                            });
+                                emailAddress,
+                                userId
+                            };
                             
-                            alert('感谢你的分享！我们会尽快给予回应。');
-                            window.location.href = './';
+                            sessionStorage.setItem('submissionData', JSON.stringify(submissionData));
+                            
+                            // In a real app, this would send the data to a server
+                            console.log(submissionData);
+                            
+                            // Redirect to the success page
+                            window.location.href = 'success.html';
                         }
                     });
                 }
@@ -142,6 +151,37 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the URL without refreshing the page to help with navigation
             history.pushState({}, '', 'index.html?view=confession');
         });
+    }
+    
+    // Success page functionality
+    const confessionPreview = document.getElementById('confession-preview');
+    const confessionTags = document.getElementById('confession-tags');
+    const userIdSpan = document.getElementById('user-id');
+    
+    if (confessionPreview && userIdSpan) {
+        // We're on the success page, populate with data from sessionStorage
+        const submissionData = JSON.parse(sessionStorage.getItem('submissionData') || '{}');
+        
+        if (submissionData.confessionText) {
+            confessionPreview.textContent = submissionData.confessionText;
+            userIdSpan.textContent = submissionData.userId || '3842';
+            
+            if (submissionData.selectedTags && submissionData.selectedTags.length > 0 && confessionTags) {
+                confessionTags.innerHTML = '';
+                submissionData.selectedTags.forEach(tag => {
+                    const tagSpan = document.createElement('span');
+                    tagSpan.className = 'message-tag';
+                    tagSpan.textContent = tag;
+                    confessionTags.appendChild(tagSpan);
+                });
+            } else if (confessionTags) {
+                // If no tags were selected, add a default one
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'message-tag';
+                tagSpan.textContent = '心事';
+                confessionTags.appendChild(tagSpan);
+            }
+        }
     }
     
     // Help page specific functionality

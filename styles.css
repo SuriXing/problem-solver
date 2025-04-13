@@ -609,6 +609,123 @@ button:focus, .option-btn:focus, textarea:focus {
     color: white;
 }
 
+/* Success View Styles */
+.success-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.success-header {
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.success-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.success-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-light);
+}
+
+.success-message {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.success-actions {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notification-info {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.return-home-btn {
+    background-color: var(--text-light);
+}
+
+.return-home-btn:hover {
+    background-color: var(--text-color);
+}
+
+.success-info-box {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    text-align: left;
+}
+
+.success-info-box h3 {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.success-info-box ul {
+    list-style-position: inside;
+    margin-left: 1rem;
+}
+
+.success-info-box li {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+/* Media Queries for Success View */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .action-buttons .option-btn {
+        width: 100%;
+    }
+    
+    .success-message .message-card {
+        flex-direction: column;
+    }
+    
+    .success-icon {
+        font-size: 3rem;
+    }
+    
+    .success-title {
+        font-size: 1.75rem;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .options-container {
