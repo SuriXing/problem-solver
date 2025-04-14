@@ -14,13 +14,13 @@
             <div class="logo">
                 <a href="index.html">
                     <i class="fas fa-handshake"></i>
-                    <span>解忧杂货铺</span>
+                    <span data-i18n="siteName">解忧杂货铺</span>
                 </a>
             </div>
             <nav class="nav-right">
                 <a href="#" class="nav-link history-link">
                     <i class="fas fa-history"></i>
-                    <span>过往问题</span>
+                    <span data-i18n="pastQuestions">过往问题</span>
                 </a>
             </nav>
         </div>
@@ -30,8 +30,8 @@
         <!-- Home page view -->
         <section id="home-view" class="home-view">
             <div class="hero-section">
-                <h1 class="main-title">在这里，你的故事有人倾听</h1>
-                <p class="subtitle">匿名、安全、温暖的社区</p>
+                <h1 class="main-title" data-i18n="homeTitle">在这里，你的故事有人倾听</h1>
+                <p class="subtitle" data-i18n="homeSubtitle">匿名、安全、温暖的社区</p>
             </div>
 
             <div class="options-container">
@@ -39,18 +39,18 @@
                     <div class="option-icon">
                         <i class="far fa-comment-dots"></i>
                     </div>
-                    <h2 class="option-title">我有话想说</h2>
-                    <p class="option-desc">在这里安全地分享你的困扰，收获温暖回应</p>
-                    <a href="#" class="option-btn" id="start-confession-btn">开始倾诉</a>
+                    <h2 class="option-title" data-i18n="confessCardTitle">我有话想说</h2>
+                    <p class="option-desc" data-i18n="confessCardDesc">在这里安全地分享你的困扰，收获温暖回应</p>
+                    <a href="#" class="option-btn" id="start-confession-btn" data-i18n="startConfession">开始倾诉</a>
                 </div>
                 
                 <div class="option-card">
                     <div class="option-icon helper-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h2 class="option-title">我想帮助别人</h2>
-                    <p class="option-desc">给予他人温暖的建议，成为某人的光</p>
-                    <a href="help.html" class="option-btn help-btn">去帮助他人</a>
+                    <h2 class="option-title" data-i18n="helpCardTitle">我想帮助别人</h2>
+                    <p class="option-desc" data-i18n="helpCardDesc">给予他人温暖的建议，成为某人的光</p>
+                    <a href="help.html" class="option-btn help-btn" data-i18n="goHelp">去帮助他人</a>
                 </div>
             </div>
         </section>
@@ -58,8 +58,8 @@
         <!-- Help page view -->
         <section id="help-view" class="help-view hidden">
             <div class="help-header">
-                <h1 class="help-title">帮助一个陌生人</h1>
-                <p class="help-subtitle">这些问题来自真正需要支持的人，请你用温柔的心去回答</p>
+                <h1 class="help-title" data-i18n="helpTitle">帮助一个陌生人</h1>
+                <p class="help-subtitle" data-i18n="helpSubtitle">这些问题来自真正需要支持的人，请你用温柔的心去回答</p>
             </div>
 
             <div class="message-card">
@@ -68,19 +68,19 @@
                 </div>
                 <div class="message-info">
                     <div class="message-meta">
-                        <span class="message-author"><i class="fas fa-user-circle"></i> 匿名提问者 #2831</span>
+                        <span class="message-author"><i class="fas fa-user-circle"></i> <span data-i18n="anonymousAsker">匿名提问者</span> #2831</span>
                     </div>
                     <div class="message-content">
                         <p>最近总是感觉很焦虑，工作压力很大，晚上经常失眠，不知道该怎么调节自己的状态，希望能得到一些建议。</p>
                     </div>
                     <div class="message-tags">
-                        <span class="message-tag">压力</span>
-                        <span class="message-tag">焦虑</span>
-                        <span class="message-tag">失眠</span>
+                        <span class="message-tag" data-i18n="tagPressure">压力</span>
+                        <span class="message-tag" data-i18n="tagAnxiety">焦虑</span>
+                        <span class="message-tag" data-i18n="tagInsomnia">失眠</span>
                     </div>
-                    <div class="message-time">2小时前</div>
+                    <div class="message-time">2<span data-i18n="hoursAgo">小时前</span></div>
                     <div class="reply-area">
-                        <textarea placeholder="写下你的建议和鼓励..."></textarea>
+                        <textarea data-i18n="replyPlaceholder" placeholder="写下你的建议和鼓励..."></textarea>
                         <div class="reply-actions">
                             <div class="emoji-picker">
                                 <button class="emoji-btn"><i class="fas fa-heart"></i></button>
@@ -90,7 +90,7 @@
                                 <button class="emoji-btn"><i class="fas fa-star"></i></button>
                             </div>
                             <button class="submit-reply-btn">
-                                <i class="fas fa-paper-plane"></i> 送出回应
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="sendReply">送出回应</span>
                             </button>
                         </div>
                     </div>
@@ -99,22 +99,31 @@
 
             <div class="help-stats">
                 <div class="stat-item">
-                    <i class="fas fa-heart"></i> 今日已帮助: 3人
+                    <i class="fas fa-heart"></i> <span data-i18n="todayHelped">今日已帮助</span>: 3<span data-i18n="people">人</span>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-users"></i> 累计帮助: 28人
+                    <i class="fas fa-users"></i> <span data-i18n="totalHelped">累计帮助</span>: 28<span data-i18n="people">人</span>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-award"></i> 收到感谢: 12次
+                    <i class="fas fa-award"></i> <span data-i18n="receivedThanks">收到感谢</span>: 12<span data-i18n="times">次</span>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <p>© 2024 解忧杂货铺 - 一个温暖的心灵港湾</p>
+        <p><span data-i18n="copyright">© 2024 解忧杂货铺 - 一个温暖的心灵港湾</span></p>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize i18n after DOM is loaded
+            if (window.i18n) {
+                window.i18n.init();
+            }
+        });
+    </script>
 </body>
 </html> 

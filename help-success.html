@@ -14,13 +14,13 @@
             <div class="logo">
                 <a href="index.html">
                     <i class="fas fa-handshake"></i>
-                    <span>解忧杂货铺</span>
+                    <span data-i18n="siteName">解忧杂货铺</span>
                 </a>
             </div>
             <nav class="nav-right">
                 <a href="#" class="nav-link history-link">
                     <i class="fas fa-history"></i>
-                    <span>过往回应</span>
+                    <span data-i18n="pastResponses">过往回应</span>
                 </a>
             </nav>
         </div>
@@ -32,33 +32,33 @@
                 <div class="success-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h1 class="success-title">感谢你的温暖回应</h1>
-                <p class="success-subtitle">你的建议和鼓励将带给对方力量和希望</p>
+                <h1 class="success-title" data-i18n="thankHelperTitle">感谢你的温暖回应</h1>
+                <p class="success-subtitle" data-i18n="thankHelperSubtitle">你的建议和鼓励将带给对方力量和希望</p>
             </div>
 
             <div class="helper-stats-container">
-                <h2 class="helper-stats-title">你的帮助统计</h2>
+                <h2 class="helper-stats-title" data-i18n="helperStats">你的帮助统计</h2>
                 <div class="helper-stats-grid">
                     <div class="helper-stat-item">
                         <div class="helper-stat-icon">
                             <i class="fas fa-heart"></i>
                         </div>
                         <div class="helper-stat-value" id="today-helped">4</div>
-                        <div class="helper-stat-label">今日已帮助</div>
+                        <div class="helper-stat-label" data-i18n="todayHelped">今日已帮助</div>
                     </div>
                     <div class="helper-stat-item">
                         <div class="helper-stat-icon">
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="helper-stat-value" id="total-helped">29</div>
-                        <div class="helper-stat-label">累计帮助</div>
+                        <div class="helper-stat-label" data-i18n="totalHelped">累计帮助</div>
                     </div>
                     <div class="helper-stat-item">
                         <div class="helper-stat-icon">
                             <i class="fas fa-award"></i>
                         </div>
                         <div class="helper-stat-value" id="total-thanks">12</div>
-                        <div class="helper-stat-label">收到感谢</div>
+                        <div class="helper-stat-label" data-i18n="receivedThanks">收到感谢</div>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="message-info">
                         <div class="message-meta">
-                            <span class="message-author"><i class="fas fa-user-circle"></i> 匿名提问者 #<span id="poster-id">2831</span></span>
+                            <span class="message-author"><i class="fas fa-user-circle"></i> <span data-i18n="anonymousAsker">匿名提问者</span> #<span id="poster-id">2831</span></span>
                         </div>
                         <div class="message-content">
                             <p id="question-preview">问题内容将显示在这里...</p>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="reply-preview">
                             <div class="reply-header">
-                                <i class="fas fa-reply"></i> 你的回应:
+                                <i class="fas fa-reply"></i> <span data-i18n="yourReply">你的回应:</span>
                             </div>
                             <p id="reply-content">你的回应内容将显示在这里...</p>
                         </div>
@@ -91,30 +91,39 @@
             <div class="success-actions">
                 <div class="action-buttons">
                     <a href="index.html" class="option-btn return-home-btn">
-                        <i class="fas fa-home"></i> 返回首页
+                        <i class="fas fa-home"></i> <span data-i18n="returnHome">返回首页</span>
                     </a>
                     <a href="help.html" class="option-btn help-btn">
-                        <i class="fas fa-hands-helping"></i> 继续帮助他人
+                        <i class="fas fa-hands-helping"></i> <span data-i18n="continueHelping">继续帮助他人</span>
                     </a>
                 </div>
             </div>
 
             <div class="success-info-box">
-                <h3><i class="fas fa-info-circle"></i> 你的善举很重要</h3>
+                <h3><i class="fas fa-info-circle"></i> <span data-i18n="kindnessMatters">你的善举很重要</span></h3>
                 <ul>
-                    <li>你的回应已经传递给了需要帮助的人</li>
-                    <li>对方收到后可能会给你发送感谢</li>
-                    <li>你可以在"过往回应"中查看你的所有回应和对方的反馈</li>
-                    <li>每一个温暖的回应都可能改变一个人的处境</li>
+                    <li data-i18n="replyDelivered">你的回应已经传递给了需要帮助的人</li>
+                    <li data-i18n="mightThankYou">对方收到后可能会给你发送感谢</li>
+                    <li data-i18n="checkPastResponses">你可以在"过往回应"中查看你的所有回应和对方的反馈</li>
+                    <li data-i18n="everyReplyMatters">每一个温暖的回应都可能改变一个人的处境</li>
                 </ul>
             </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <p>© 2024 解忧杂货铺 - 一个温暖的心灵港湾</p>
+        <p><span data-i18n="copyright">© 2024 解忧杂货铺 - 一个温暖的心灵港湾</span></p>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize i18n after DOM is loaded
+            if (window.i18n) {
+                window.i18n.init();
+            }
+        });
+    </script>
 </body>
 </html> 

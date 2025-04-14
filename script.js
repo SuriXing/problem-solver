@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeView = document.getElementById('home-view');
     const helpView = document.getElementById('help-view');
     
+    // Helper function to get translations
+    function t(key) {
+        return window.i18n ? window.i18n.t(key) : key;
+    }
+    
     // Event listeners for the home page buttons
     if (startConfessionBtn) {
         startConfessionBtn.addEventListener('click', (e) => {
@@ -18,38 +23,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 confessionView.className = 'confession-view';
                 confessionView.innerHTML = `
                     <div class="confession-header">
-                        <h1 class="confession-title">向杂货铺老板倾诉</h1>
-                        <p class="confession-subtitle">在这里分享你的困扰，收到回复时将通知你</p>
+                        <h1 class="confession-title" data-i18n="confessionTitle">${t('confessionTitle')}</h1>
+                        <p class="confession-subtitle" data-i18n="confessionSubtitle">${t('confessionSubtitle')}</p>
                     </div>
                     <div class="confession-form">
                         <div class="confession-image">
                             <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="信件">
                         </div>
-                        <textarea placeholder="写下你的心事、困惑或者需要的帮助..."></textarea>
+                        <textarea placeholder="${t('confessionPlaceholder')}" data-i18n="confessionPlaceholder"></textarea>
                         <div class="tag-selector">
-                            <p>添加标签（可选）：</p>
+                            <p data-i18n="addTags">${t('addTags')}</p>
                             <div class="tags">
-                                <span class="tag">压力</span>
-                                <span class="tag">焦虑</span>
-                                <span class="tag">失眠</span>
-                                <span class="tag">感情</span>
-                                <span class="tag">工作</span>
-                                <span class="tag">学业</span>
+                                <span class="tag" data-i18n="tagPressure">${t('tagPressure')}</span>
+                                <span class="tag" data-i18n="tagAnxiety">${t('tagAnxiety')}</span>
+                                <span class="tag" data-i18n="tagInsomnia">${t('tagInsomnia')}</span>
+                                <span class="tag" data-i18n="tagRelationship">${t('tagRelationship')}</span>
+                                <span class="tag" data-i18n="tagWork">${t('tagWork')}</span>
+                                <span class="tag" data-i18n="tagStudy">${t('tagStudy')}</span>
                             </div>
                         </div>
                         <div class="confession-options">
                             <div class="privacy-options">
-                                <p>隐私设置：</p>
+                                <p data-i18n="privacySettings">${t('privacySettings')}</p>
                                 <div class="radio-options">
                                     <label class="radio-label">
                                         <input type="radio" name="privacy" value="public" checked>
                                         <span class="radio-custom"></span>
-                                        <span>公开提问 (可被大家回答)</span>
+                                        <span data-i18n="publicQuestion">${t('publicQuestion')}</span>
                                     </label>
                                     <label class="radio-label">
                                         <input type="radio" name="privacy" value="private">
                                         <span class="radio-custom"></span>
-                                        <span>私密提问 (仅管理员可见)</span>
+                                        <span data-i18n="privateQuestion">${t('privateQuestion')}</span>
                                     </label>
                                 </div>
                             </div>
@@ -57,16 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="email-notification">
                                     <span class="checkbox-custom"></span>
-                                    <span>有回复时通过邮件通知我</span>
+                                    <span data-i18n="emailNotify">${t('emailNotify')}</span>
                                 </label>
                                 <div class="email-input-container" style="display: none;">
-                                    <input type="email" placeholder="请输入你的邮箱" class="email-input">
+                                    <input type="email" placeholder="${t('emailPlaceholder')}" data-i18n="emailPlaceholder" class="email-input">
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions">
                             <button class="submit-confession-btn">
-                                <i class="fas fa-paper-plane"></i> 发送
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="send">${t('send')}</span>
                             </button>
                         </div>
                     </div>`;
@@ -84,12 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         let validSubmission = true;
                         
                         if (!confessionText) {
-                            alert('请先写下你的心事。');
+                            alert(t('enterThoughts'));
                             validSubmission = false;
                         }
                         
                         if (emailNotification && emailInput && !emailInput.value.trim()) {
-                            alert('请填写你的邮箱地址以接收通知。');
+                            alert(t('enterEmail'));
                             validSubmission = false;
                         }
                         
@@ -205,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If no tags were selected, add a default one
                 const tagSpan = document.createElement('span');
                 tagSpan.className = 'message-tag';
-                tagSpan.textContent = '心事';
+                tagSpan.setAttribute('data-i18n', 'tagThoughts');
+                tagSpan.textContent = t('tagThoughts');
                 confessionTags.appendChild(tagSpan);
             }
         }
@@ -240,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (helperData.questionText) {
             questionPreview.textContent = helperData.questionText;
             posterIdSpan.textContent = helperData.posterId || '2831';
-            replyContent.textContent = helperData.replyText || '你的回应内容将显示在这里...';
+            replyContent.textContent = helperData.replyText || t('yourReply');
             
             // Update stats if available
             if (helperData.stats) {
@@ -261,7 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If no tags were present, add a default one
                 const tagSpan = document.createElement('span');
                 tagSpan.className = 'message-tag';
-                tagSpan.textContent = '心事';
+                tagSpan.setAttribute('data-i18n', 'tagThoughts');
+                tagSpan.textContent = t('tagThoughts');
                 questionTags.appendChild(tagSpan);
             }
         }
@@ -338,12 +345,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'help-success.html';
                 } else {
                     // If we can't find the question content, just show an alert
-                    alert('感谢你的回应！你的温暖将传递给需要帮助的人。');
+                    alert(t('replyThanks'));
                     replyTextarea.value = '';
                     updateHelperStats();
                 }
             } else {
-                alert('请先写下你的建议和鼓励。');
+                alert(t('enterSuggestion'));
             }
         });
     }
@@ -353,13 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const todayHelped = document.querySelector('.help-stats .stat-item:nth-child(1)');
         if (todayHelped) {
             const currentCount = parseInt(todayHelped.textContent.match(/\d+/)[0]);
-            todayHelped.innerHTML = `<i class="fas fa-heart"></i> 今日已帮助: ${currentCount + 1}人`;
+            todayHelped.innerHTML = `<i class="fas fa-heart"></i> <span data-i18n="todayHelped">${t('todayHelped')}</span>: ${currentCount + 1}<span data-i18n="people">${t('people')}</span>`;
         }
         
         const totalHelped = document.querySelector('.help-stats .stat-item:nth-child(2)');
         if (totalHelped) {
             const currentCount = parseInt(totalHelped.textContent.match(/\d+/)[0]);
-            totalHelped.innerHTML = `<i class="fas fa-users"></i> 累计帮助: ${currentCount + 1}人`;
+            totalHelped.innerHTML = `<i class="fas fa-users"></i> <span data-i18n="totalHelped">${t('totalHelped')}</span>: ${currentCount + 1}<span data-i18n="people">${t('people')}</span>`;
         }
     }
     
