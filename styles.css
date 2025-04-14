@@ -1040,7 +1040,7 @@ button:focus, .option-btn:focus, textarea:focus {
     position: absolute;
     top: 100%;
     right: 0;
-    width: 150px;
+    width: 160px;
     background-color: var(--card-background);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px var(--shadow-color);
@@ -1103,7 +1103,9 @@ button:focus, .option-btn:focus, textarea:focus {
     }
     
     .language-dropdown {
-        width: 120px;
+        width: 130px;
         right: -10px;
+        max-height: 200px;
+        overflow-y: auto;
     }
 } 

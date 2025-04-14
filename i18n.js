@@ -91,6 +91,8 @@ const translations = {
         'chinese': '中文',
         'english': 'English',
         'spanish': 'Español',
+        'japanese': '日本語',
+        'korean': '한국어',
 
         // Index page
         'welcomeTitle': '欢迎来到解忧杂货铺',
@@ -229,6 +231,8 @@ const translations = {
         'chinese': '中文',
         'english': 'English',
         'spanish': 'Español',
+        'japanese': '日本語',
+        'korean': '한국어',
 
         // Index page
         'welcomeTitle': 'Welcome to Problem Solver Shop',
@@ -367,6 +371,8 @@ const translations = {
         'chinese': '中文',
         'english': 'English',
         'spanish': 'Español',
+        'japanese': '日本語',
+        'korean': '한국어',
 
         // Index page
         'welcomeTitle': 'Bienvenido a la Tienda de Resolución de Problemas',
@@ -413,6 +419,228 @@ const translations = {
         'emailSubmittedMessage': 'enviado, te notificaremos por correo electrónico',
         'pleaseEnterReply': 'Por favor ingresa tu respuesta',
         'thankYouForHelping': 'Gracias por tu ayuda'
+    },
+    'ja': { // Japanese
+        // Common elements
+        'siteName': '悩み解決ショップ',
+        'siteDescription': '心の安らぎ場所',
+        'pastQuestions': '過去の質問',
+        'pastResponses': '過去の回答',
+        'returnHome': 'ホームに戻る',
+        'helpOthers': '他の人を助ける',
+        'continueHelping': '助け続ける',
+        'copyright': '© 2024 悩み解決ショップ - 心の安らぎ場所',
+
+        // Home page
+        'homeTitle': 'ここでは、あなたの話に耳を傾けます',
+        'homeSubtitle': '匿名、安全、温かいコミュニティ',
+        'confessCardTitle': '話したいことがあります',
+        'confessCardDesc': 'ここで安全に悩みを共有し、温かい返答を受け取りましょう',
+        'startConfession': '話し始める',
+        'helpCardTitle': '他の人を助けたい',
+        'helpCardDesc': '他の人に温かいアドバイスを与え、誰かの光になりましょう',
+        'goHelp': '助けに行く',
+
+        // Confession page
+        'confessionTitle': '店主に相談する',
+        'confessionSubtitle': 'ここで悩みを共有すると、返信があった時に通知します',
+        'confessionPlaceholder': '思いや悩み、必要な助けを書き込んでください...',
+        'addTags': 'タグを追加（任意）：',
+        'privacySettings': 'プライバシー設定：',
+        'publicQuestion': '公開質問（誰でも回答可能）',
+        'privateQuestion': '非公開質問（管理者のみ）',
+        'emailNotify': '返信があった時にメールで通知する',
+        'emailPlaceholder': 'メールアドレスを入力してください',
+        'send': '送信',
+        'enterThoughts': '最初に考えを書いてください。',
+        'enterEmail': '通知を受け取るためにメールアドレスを入力してください。',
+
+        // Tags
+        'tagPressure': 'プレッシャー',
+        'tagAnxiety': '不安',
+        'tagInsomnia': '不眠',
+        'tagRelationship': '人間関係',
+        'tagWork': '仕事',
+        'tagStudy': '勉強',
+        'tagLife': '生活',
+        'tagThoughts': '考え',
+
+        // Confession success page
+        'thankYouTitle': '共有してくれてありがとう',
+        'thankYouSubtitle': 'あなたのメッセージが記録されました。できるだけ早く返信します',
+        'yourAccessCode': 'アクセスコード',
+        'saveAccessCode': '後で返信を確認するためにこのアクセスコードを保存してください',
+        'yourAnonymousId': '匿名ID: #',
+        'justPosted': '投稿したばかり',
+        'notifyMessage': '返信があった時に通知します',
+        'whatHappensNext': '次に何が起こるか？',
+        'communityWillSee': 'コミュニティのメンバーがあなたの質問を見て助けを提供します',
+        'replyIn24h': '通常、24時間 以内に返信があります',
+        'emailNotification': 'メールを提供した場合、返信があった時に通知します',
+        'checkWithCode': 'アクセスコードを使用して「過去の質問」から質問の状態と返信を確認できます',
+        'copied': 'コピーしました！',
+
+        // Help page
+        'helpTitle': '見知らぬ人を助ける',
+        'helpSubtitle': 'これらの質問は本当にサポートが必要な人々からのものです。優しい心で答えてください',
+        'anonymousAsker': '匿名の質問者 #',
+        'hoursAgo': '時間前',
+        'replyPlaceholder': 'アドバイスと励ましを書いてください...',
+        'sendReply': '返信を送信',
+        'todayHelped': '今日の助け',
+        'totalHelped': '累計の助け',
+        'receivedThanks': '受け取った感謝',
+        'people': '人',
+        'times': '回',
+        'enterSuggestion': 'まずアドバイスと励ましを書いてください。',
+        'replyThanks': '返信ありがとうございます！あなたの温かさは助けが必要な人に届けられます。',
+
+        // Helper success page
+        'thankHelperTitle': '温かい返信をありがとう',
+        'thankHelperSubtitle': 'あなたのアドバイスと励ましは他の人に力と希望をもたらします',
+        'helperStats': '助けの統計',
+        'yourReply': 'あなたの返信:',
+        'kindnessMatters': '優しさが大切です',
+        'replyDelivered': 'あなたの返信は助けを必要とする人に届けられました',
+        'mightThankYou': '相手は受け取った後にお礼を送るかもしれません',
+        'checkPastResponses': '"これまでの回答"ですべての返信と相手からのフィードバックを確認できます',
+        'everyReplyMatters': 'すべての温かい返信が誰かの状況を変える可能性があります',
+
+        // Language selector
+        'language': '言語',
+        'chinese': '中文',
+        'english': 'English',
+        'spanish': 'Español',
+        'japanese': '日本語',
+        'korean': '한국어',
+
+        // Index page
+        'welcomeTitle': '悩み解決ショップへようこそ',
+        'welcomeSubtitle': 'ここでは、悩みを打ち明けたり、他の人の悩みを解決したりできます',
+        'confessOption': '悩みを打ち明ける',
+        'confessDescription': 'あなたの悩みをここに書き込むと、見知らぬ人が答えてくれるかもしれません',
+        'helpOption': '他の人を助ける',
+        'helpDescription': '他の人の悩みに耳を傾け、あなたの温かさで見知らぬ人を慰めましょう',
+
+        // Messages
+        'pleaseEnterThoughts': '悩みを入力してください',
+        'pleaseEnterEmail': '有効なメールアドレスを入力してください',
+        'thankYouMessage': '共有してくれてありがとう',
+        'accessCodeMessage': 'アクセスコード',
+        'emailSubmittedMessage': '送信されました。メールで通知します',
+        'pleaseEnterReply': '返信を入力してください',
+        'thankYouForHelping': '助けてくれてありがとう'
+    },
+    'ko': { // Korean
+        // Common elements
+        'siteName': '고민 해결 상점',
+        'siteDescription': '마음의 따뜻한 안식처',
+        'pastQuestions': '이전 질문들',
+        'pastResponses': '이전 답변들',
+        'returnHome': '홈으로 돌아가기',
+        'helpOthers': '다른 사람 돕기',
+        'continueHelping': '계속 돕기',
+        'copyright': '© 2024 고민 해결 상점 - 마음의 따뜻한 안식처',
+
+        // Home page
+        'homeTitle': '여기서 당신의 이야기를 들어드립니다',
+        'homeSubtitle': '익명, 안전, 따뜻한 커뮤니티',
+        'confessCardTitle': '말하고 싶은 것이 있어요',
+        'confessCardDesc': '여기서 안전하게 고민을 공유하고 따뜻한 답변을 받으세요',
+        'startConfession': '이야기 시작하기',
+        'helpCardTitle': '다른 사람을 돕고 싶어요',
+        'helpCardDesc': '다른 사람에게 따뜻한 조언을 주고 누군가의 빛이 되세요',
+        'goHelp': '도우러 가기',
+
+        // Confession page
+        'confessionTitle': '가게 주인에게 이야기하기',
+        'confessionSubtitle': '여기에 고민을 공유하면 답변이 왔을 때 알려드립니다',
+        'confessionPlaceholder': '생각, 고민 또는 필요한 도움을 적어주세요...',
+        'addTags': '태그 추가 (선택사항):',
+        'privacySettings': '개인정보 설정:',
+        'publicQuestion': '공개 질문 (모두가 답변 가능)',
+        'privateQuestion': '비공개 질문 (관리자만)',
+        'emailNotify': '답변이 있을 때 이메일로 알림 받기',
+        'emailPlaceholder': '이메일을 입력해주세요',
+        'send': '보내기',
+        'enterThoughts': '먼저 생각을 적어주세요.',
+        'enterEmail': '알림을 받으려면 이메일을 입력해주세요.',
+
+        // Tags
+        'tagPressure': '압박감',
+        'tagAnxiety': '불안',
+        'tagInsomnia': '불면증',
+        'tagRelationship': '인간관계',
+        'tagWork': '일',
+        'tagStudy': '공부',
+        'tagLife': '생활',
+        'tagThoughts': '생각',
+
+        // Confession success page
+        'thankYouTitle': '공유해주셔서 감사합니다',
+        'thankYouSubtitle': '메시지가 기록되었습니다. 최대한 빨리 답변드리겠습니다',
+        'yourAccessCode': '접근 코드',
+        'saveAccessCode': '나중에 답변을 확인하기 위해 이 접근 코드를 저장해주세요',
+        'yourAnonymousId': '익명 ID: #',
+        'justPosted': '방금 게시됨',
+        'notifyMessage': '답변이 있을 때 알려드립니다',
+        'whatHappensNext': '다음에 어떤 일이 일어날까요?',
+        'communityWillSee': '커뮤니티 회원들이 질문을 보고 도움을 제공할 것입니다',
+        'replyIn24h': '보통 24시간 이내에 답변을 받게 됩니다',
+        'emailNotification': '이메일을 제공했다면 답변이 있을 때 알려드립니다',
+        'checkWithCode': '접근 코드를 사용하여 "이전 질문들"을 통해 질문 상태와 답변을 확인할 수 있습니다',
+        'copied': '복사됨!',
+
+        // Help page
+        'helpTitle': '낯선 사람 돕기',
+        'helpSubtitle': '이 질문들은 진정으로 지원이 필요한 사람들로부터 온 것입니다. 부드러운 마음으로 답변해주세요',
+        'anonymousAsker': '익명 질문자 #',
+        'hoursAgo': '시간 전',
+        'replyPlaceholder': '조언과 격려를 적어주세요...',
+        'sendReply': '답변 보내기',
+        'todayHelped': '오늘 도움',
+        'totalHelped': '총 도움',
+        'receivedThanks': '받은 감사',
+        'people': '명',
+        'times': '회',
+        'enterSuggestion': '먼저 조언과 격려를 적어주세요.',
+        'replyThanks': '답변해주셔서 감사합니다! 당신의 따뜻함이 도움이 필요한 사람들에게 전달될 것입니다.',
+
+        // Helper success page
+        'thankHelperTitle': '따뜻한 답변 감사합니다',
+        'thankHelperSubtitle': '당신의 조언과 격려는 다른 사람에게 힘과 희망을 줄 것입니다',
+        'helperStats': '도움 통계',
+        'yourReply': '당신의 답변:',
+        'kindnessMatters': '당신의 친절이 중요합니다',
+        'replyDelivered': '당신의 답변이 도움이 필요한 사람에게 전달되었습니다',
+        'mightThankYou': '상대방은 받은 후 감사의 마음을 보낼 수 있습니다',
+        'checkPastResponses': '"이전 답변들"에서 모든 답변과 상대방의 피드백을 확인할 수 있습니다',
+        'everyReplyMatters': '모든 따뜻한 답변이 누군가의 상황을 바꿀 수 있습니다',
+
+        // Language selector
+        'language': '언어',
+        'chinese': '中文',
+        'english': 'English',
+        'spanish': 'Español',
+        'japanese': '日本語',
+        'korean': '한국어',
+
+        // Index page
+        'welcomeTitle': '고민 해결 상점에 오신 것을 환영합니다',
+        'welcomeSubtitle': '여기서 고민을 털어놓거나, 다른 사람의 고민을 해결해 줄 수 있습니다',
+        'confessOption': '고민 털어놓기',
+        'confessDescription': '여기에 고민을 적으면 낯선 사람이 답변해 줄 수도 있습니다',
+        'helpOption': '다른 사람 돕기',
+        'helpDescription': '다른 사람의 고민을 듣고 당신의 따뜻함으로 낯선 사람을 위로하세요',
+
+        // Messages
+        'pleaseEnterThoughts': '고민을 입력해주세요',
+        'pleaseEnterEmail': '유효한 이메일 주소를 입력해주세요',
+        'thankYouMessage': '공유해주셔서 감사합니다',
+        'accessCodeMessage': '접근 코드',
+        'emailSubmittedMessage': '제출되었습니다. 이메일로 알려드리겠습니다',
+        'pleaseEnterReply': '답변을 입력해주세요',
+        'thankYouForHelping': '도움 주셔서 감사합니다'
     }
 };
 
@@ -457,6 +685,12 @@ function addLanguageSelector() {
             </a>
             <a href="#" data-lang="es" class="language-option ${currentLanguage === 'es' ? 'active' : ''}">
                 <span data-i18n="spanish">Español</span>
+            </a>
+            <a href="#" data-lang="ja" class="language-option ${currentLanguage === 'ja' ? 'active' : ''}">
+                <span data-i18n="japanese">日本語</span>
+            </a>
+            <a href="#" data-lang="ko" class="language-option ${currentLanguage === 'ko' ? 'active' : ''}">
+                <span data-i18n="korean">한국어</span>
             </a>
         </div>
     `;
@@ -536,6 +770,8 @@ function translatePage() {
     document.title = document.title.replace('解忧杂货铺', translations[currentLanguage]['siteName']);
     document.title = document.title.replace('Worry-Free Store', translations[currentLanguage]['siteName']);
     document.title = document.title.replace('Tienda Sin Preocupaciones', translations[currentLanguage]['siteName']);
+    document.title = document.title.replace('悩み解決ショップ', translations[currentLanguage]['siteName']);
+    document.title = document.title.replace('고민 해결 상점', translations[currentLanguage]['siteName']);
 }
 
 // Get translation for a specific key
